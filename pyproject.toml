@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "book-task"
+name = "page-task"
 version = "0.1.0"
 description = ""
 authors = ["Tiago Florentino"]
