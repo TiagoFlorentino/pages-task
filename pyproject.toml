@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "book-task"
+version = "0.1.0"
+description = ""
+authors = ["Tiago Florentino"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+black = "^22.6.0"
+poetry-dotenv-plugin = "^0.1.0-alpha.2"
+pytest = "^7.1.2"
+fastapi = "^0.79.0"
+uvicorn = {extras = ["standard"], version = "^0.18.2"}
+asyncio = "^3.4.3"
+pytest-asyncio = "^0.19.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
