@@ -1,5 +1,6 @@
 import pytest
 
+from paginator.exceptions import InvalidArgumentException
 from paginator.paginator import Paginator
 
 
@@ -67,8 +68,6 @@ def test_get_current_boundary_pages(
         (4, 10, 2, 2, "1 2 3 4 5 6 ... 9 10"),
         # Invalid Results
         (0, 0, 0, 0, "No results to print!"),
-        (-1, 0, 0, 0, "Negative values added as arguments!"),
-        (4, 0, 2, 2, "No results to print!"),
     ],
 )
 def test_print_paginator(
@@ -83,3 +82,21 @@ def test_print_paginator(
     paginator.print_paginator()
     captured = capsys.readouterr()
     assert captured.out.strip() == expected_result
+
+
+@pytest.mark.parametrize(
+    "current_page,total_pages, boundaries, around",
+    [
+        (-1, 0, 0, 0),
+        (4, 0, 2, 2),
+    ],
+)
+def test_invalid_arguments(current_page, total_pages, boundaries, around, capsys):
+    paginator = Paginator(
+        current_page=current_page,
+        total_pages=total_pages,
+        boundaries=boundaries,
+        around=around,
+    )
+    with pytest.raises(InvalidArgumentException):
+        paginator.print_paginator()
