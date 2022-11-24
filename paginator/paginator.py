@@ -75,7 +75,7 @@ class Paginator:
             for count, value in enumerate(unique_page_collection):
                 if count == 0 and value > 1:
                     # First element is not the first page
-                    to_print += f"... "
+                    to_print += "... "
                 to_print += f"{value} "
                 if (
                     count == (len(unique_page_collection) - 1)
@@ -85,6 +85,6 @@ class Paginator:
                     and unique_page_collection[count + 1] - value > 1
                 ):
                     # Check if last element is the last page or difference between values is >1
-                    to_print += f"... "
+                    to_print += "... "
 
             print(to_print) if to_print else print("No results to print!")
