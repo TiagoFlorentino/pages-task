@@ -1,5 +1,7 @@
 from typing import List
 
+from paginator.exceptions import InvalidArgumentException
+
 
 class Paginator:
 
@@ -15,6 +17,20 @@ class Paginator:
         self.total_pages = total_pages
         self.boundaries = boundaries
         self.around = around
+
+    def validate_arguments(self) -> bool:
+        return (
+            not all(
+                value >= 0
+                for value in [
+                    self.total_pages,
+                    self.current_page,
+                    self.boundaries,
+                    self.around,
+                ]
+            )
+            or self.current_page > self.total_pages
+        )
 
     def append_condition(self, value: int, page_collection: List[int]):
         return 1 <= value <= self.total_pages and value not in page_collection
@@ -55,16 +71,8 @@ class Paginator:
         return page_collection
 
     def print_paginator(self):
-        if not all(
-            value >= 0
-            for value in [
-                self.total_pages,
-                self.current_page,
-                self.boundaries,
-                self.around,
-            ]
-        ):
-            print("Negative values added as arguments!")
+        if self.validate_arguments():
+            raise InvalidArgumentException("Negative values added as arguments!")
         else:
             page_collection = (
                 self.get_boundary_pages() + self.get_current_boundary_pages()
