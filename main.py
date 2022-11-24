@@ -1,10 +1,24 @@
+import click
+
 from paginator.paginator import Paginator
 
-if __name__ == "__main__":
-    # Example A
-    paginatorA = Paginator(current_page=4, total_pages=5, boundaries=1, around=0)
-    paginatorA.print_paginator()
 
-    # Example B
-    paginatorB = Paginator(current_page=4, total_pages=10, boundaries=2, around=2)
-    paginatorB.print_paginator()
+@click.command()
+@click.option("--current-page", "-cp", default=0)
+@click.option("--total-pages", "-tp", default=0)
+@click.option("--boundaries", "-bo", default=0)
+@click.option("--around", "-ar", default=0)
+def main_paginator_print(
+    current_page: int, total_pages: int, boundaries: int, around: int
+):
+    paginator = Paginator(
+        current_page=current_page,
+        total_pages=total_pages,
+        boundaries=boundaries,
+        around=around,
+    )
+    paginator.print_paginator()
+
+
+if __name__ == "__main__":
+    main_paginator_print()

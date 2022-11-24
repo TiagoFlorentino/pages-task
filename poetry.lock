@@ -142,7 +142,7 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "b241bf8b19141c7cb148766fcde5bd95126b3767e56fe86f8c8d9a012c1ba08a"
+content-hash = "a2b0c047d7c1c909e7802fea4d091e7a9f8532703e4ad87d46562860fd80de7b"
 
 [metadata.files]
 attrs = [
