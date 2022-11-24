@@ -100,3 +100,46 @@ def test_invalid_arguments(current_page, total_pages, boundaries, around):
     )
     with pytest.raises(InvalidArgumentException):
         paginator.print_paginator()
+
+
+@pytest.mark.parametrize(
+    "current_page,total_pages, boundaries, around, expected_result",
+    [
+        (-1, 0, 0, 0, False),
+        (4, 0, 2, 2, False),
+        (1, 2, 3, 4, True),
+    ],
+)
+def test_validate_arguments(
+    current_page, total_pages, boundaries, around, expected_result
+):
+    paginator = Paginator(
+        current_page=current_page,
+        total_pages=total_pages,
+        boundaries=boundaries,
+        around=around,
+    )
+    assert paginator.validate_arguments() == expected_result
+
+
+@pytest.mark.parametrize(
+    "total_pages, value, page_collection, expected_result",
+    [
+        (1, 1, [], True),
+        (1, 1, [1], False),
+        (1, 0, [], False),
+        (0, 1, [], False),
+        (3, 2, [1], True),
+    ],
+)
+def test_append_condition(total_pages, value, page_collection, expected_result):
+    paginator = Paginator(
+        current_page=0,
+        total_pages=total_pages,
+        boundaries=0,
+        around=0,
+    )
+    assert (
+        paginator.append_condition(value=value, page_collection=page_collection)
+        == expected_result
+    )

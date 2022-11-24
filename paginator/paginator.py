@@ -19,7 +19,7 @@ class Paginator:
         self.around = around
 
     def validate_arguments(self) -> bool:
-        return (
+        return not (
             not all(
                 value >= 0
                 for value in [
@@ -32,7 +32,7 @@ class Paginator:
             or self.current_page > self.total_pages
         )
 
-    def append_condition(self, value: int, page_collection: List[int]):
+    def append_condition(self, value: int, page_collection: List[int]) -> bool:
         return 1 <= value <= self.total_pages and value not in page_collection
 
     def get_boundary_pages(self) -> List[int]:
@@ -70,8 +70,8 @@ class Paginator:
         page_collection.sort()
         return page_collection
 
-    def print_paginator(self):
-        if self.validate_arguments():
+    def print_paginator(self) -> None:
+        if not self.validate_arguments():
             raise InvalidArgumentException("Negative values added as arguments!")
         else:
             page_collection = (
