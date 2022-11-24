@@ -91,7 +91,7 @@ def test_print_paginator(
         (4, 0, 2, 2),
     ],
 )
-def test_invalid_arguments(current_page, total_pages, boundaries, around, capsys):
+def test_invalid_arguments(current_page, total_pages, boundaries, around):
     paginator = Paginator(
         current_page=current_page,
         total_pages=total_pages,
