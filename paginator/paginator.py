@@ -19,8 +19,8 @@ class Paginator:
         self.around = around
 
     def validate_arguments(self) -> bool:
-        return not (
-            not all(
+        return (
+            all(
                 value >= 0
                 for value in [
                     self.total_pages,
@@ -29,7 +29,7 @@ class Paginator:
                     self.around,
                 ]
             )
-            or self.current_page > self.total_pages
+            and self.current_page <= self.total_pages
         )
 
     def append_condition(self, value: int, page_collection: List[int]) -> bool:
