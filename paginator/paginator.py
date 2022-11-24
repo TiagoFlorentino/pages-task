@@ -74,6 +74,7 @@ class Paginator:
                 count < len(unique_page_collection) - 1
                 and unique_page_collection[count + 1] - value > 1
             ):
+                # Check if last element is the last page or difference between values is >1
                 to_print += f"... "
 
         print(to_print) if to_print else print("No results to print!")
