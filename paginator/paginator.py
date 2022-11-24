@@ -72,7 +72,7 @@ class Paginator:
 
     def print_paginator(self) -> None:
         if not self.validate_arguments():
-            raise InvalidArgumentException("Negative values added as arguments!")
+            raise InvalidArgumentException("Invalid arguments provided!")
         else:
             page_collection = (
                 self.get_boundary_pages() + self.get_current_boundary_pages()
